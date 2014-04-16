@@ -1,21 +1,21 @@
 source 'https://rubygems.org'
 
-gem "rails", "4.1.0"
-gem "rake"
-gem "jquery-rails"
-gem "coderay"
-gem "fastercsv", :platforms => [:mri_18, :mingw_18, :jruby]
-gem "builder"
+gem "rails", "3.2.17"
+gem "rake", "~> 10.1.1"
+gem "jquery-rails", "~> 2.0.2"
+gem "coderay", "~> 1.1.0"
+gem "fastercsv", "~> 1.5.0", :platforms => [:mri_18, :mingw_18, :jruby]
+gem "builder", "3.0.0"
 gem "mime-types"
 
 # Optional gem for LDAP authentication
 group :ldap do
-  gem "net-ldap"
+  gem "net-ldap", "~> 0.3.1"
 end
 
 # Optional gem for OpenID authentication
 group :openid do
-  gem "ruby-openid", :require => "openid"
+  gem "ruby-openid", "~> 2.3.0", :require => "openid"
   gem "rack-openid"
 end
 
@@ -31,14 +31,14 @@ platforms :mri, :mingw do
   # Optional Markdown support, not for JRuby
   group :markdown do
     # TODO: upgrade to redcarpet 3.x when ruby1.8 support is dropped
-    gem "redcarpet"
+    gem "redcarpet", "~> 2.3.0"
   end
 end
 
 platforms :jruby do
   # jruby-openssl is bundled with JRuby 1.7.0
   gem "jruby-openssl" if Object.const_defined?(:JRUBY_VERSION) && JRUBY_VERSION < '1.7.0'
-  gem "activerecord-jdbc-adapter"
+  gem "activerecord-jdbc-adapter", "~> 1.3.2"
 end
 
 # Include database gems for the adapters found in the database
@@ -79,15 +79,15 @@ else
 end
 
 group :development do
-  gem "rdoc"
+  gem "rdoc", ">= 2.4.2"
   gem "yard"
 end
 
 group :test do
-  gem "shoulda"
+  gem "shoulda", "~> 3.3.2"
   gem "mocha", ">= 0.14", :require => 'mocha/api'
   if RUBY_VERSION >= '1.9.3'
-    gem "capybara"
+    gem "capybara", "~> 2.1.0"
     gem "selenium-webdriver"
   end
 end
